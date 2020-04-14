@@ -1,6 +1,5 @@
 require 'faker'
 require 'colorize'
-require 'emoji'
 
 # to bundle your gems
 # gem install bundler # installs the bundler
@@ -25,18 +24,14 @@ class FunFactGenerator
 
         continue = true
         firstLoop = true
-        puts "Hello there!" 
-        puts @@heart.encode('utf-8')
-        # Emoji.replace_unicode_moji_with_images('I ❤ Emoji')
-        # => "I <img alt=\"❤\" class=\"emoji\"
-        # src=\"https://cdn.shopify.com/s/files/1/1061/1924/products/Neutral_Emoji_icon_9f1cc93a-f984-4b6c-896e-d24a643e4c28_large.png?v=1571606091\"> Emoji"
+        puts "Hello there! ".colorize(:yellow) + @@heart.encode('utf-8').colorize(:red)
 
         while continue == true
             if(firstLoop == true)
-                puts "Would you to hear a useless fun fact? 'yes' or 'no'"
+                puts "Would you to hear a useless fun fact? ".colorize(:yellow) + "'yes' or 'no'"
                 firstLoop = false
             else
-                puts "Would you like another useless fun fact? 'yes' or 'no'"
+                puts "Would you like another useless fun fact? ".colorize(:yellow) + "'yes' or 'no'"
             end
 
             case gets.chomp
@@ -45,19 +40,19 @@ class FunFactGenerator
                     @@funFactArray = @@funFactArray.shuffle
                     fact = @@funFactArray[0]
                     @@funFactArray.shift
-                    puts "Fun fact, ".colorize(:blue) + fact.colorize(:red)
+                    puts "Fun fact, ".colorize(:blue) + fact.colorize(:blue)
                 else
-                    puts "Unfortunately I don't have anymore useless facts, oh well, not a big loss is it."
+                    puts "Unfortunately I don't have anymore useless facts, ".colorize(:red) + "oh well, ".colorize(:blue) + "not a big loss is it.".colorize(:green)
                 end
 
             when "no"
                 then continue = false			
             else
-                puts "Invalid Answer."
+                puts "Invalid Answer.".colorize(:red)
 			end
         end
 
-        puts "Thanks for playing!"
+        puts "Thanks for playing!".colorize(:yellow)
     end
 
 end
